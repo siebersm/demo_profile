@@ -3,7 +3,7 @@ class demo_profile::demo::puppetmaster {
   tag 'demo_profile_demo_puppetmaster'
 
   class { 'puppetdb':
-    listen_address  => 'puppetmaster.example.com',
+    listen_address  => 'puppetmaster.siebers.it',
     manage_firewall => false,
   }
   class { 'puppetdb::master::config':
@@ -23,14 +23,14 @@ class demo_profile::demo::puppetmaster {
 
   # Configure Puppetboard
   class { 'puppetboard':
-    puppetdb_host     => $::ipaddress_eth0,
+    puppetdb_host     => $::ipaddress_ens3,
     manage_git        => true,
     manage_virtualenv => false,
   }
 
   # Access Puppetboard through 
   class { 'puppetboard::apache::vhost':
-    vhost_name => 'pboard.example.com',
+    vhost_name => 'pboard.siebers.it',
     port       => 80,
   }
 
